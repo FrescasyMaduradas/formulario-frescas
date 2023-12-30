@@ -4,7 +4,6 @@ require __DIR__ . '/vendor/autoload.php';
 ini_set('File_uploads', 'On')
 ini_set('upload_max_filesize', '20M');
 ini_set('post_max_size', '20M');
-
 try {
     //Iniciar la instancia de Resend
     $resend = Resend::client('re_ZKbLvu5d_BU4FubgbBDvzgGUqMx89JzbR');
