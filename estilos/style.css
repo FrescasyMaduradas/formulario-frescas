@@ -1,0 +1,640 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+
+@media screen, (max-width: 1350px) {
+  body {
+    width: 100%;
+    height: 750px;
+    overflow: hidden;
+    float: left;
+    font-family: "Oswald", sans-serif;
+  }
+
+  .pantalla {
+    background-color: #622323;
+  }
+
+  .shadow_pantalla {
+    width: 95%;
+    height: 600px;
+    border-radius: 2%;
+    left: 30px;
+    top: 20px;
+    position: relative;
+    justify-content: center;
+    padding: 0;
+    background-color: rgba(40, 35, 35, 0.3);
+  }
+
+  .Formulario {
+    width: 90%;
+    height: 250px;
+    color: #ffddaa;
+    text-align: center;
+    display: grid;
+  }
+  .Formulario h1 {
+    position: absolute;
+    width: 90%;
+    top: 90px;
+    left: 200px;
+    font-size: 4rem;
+    text-shadow: 0 10px 10px rgb(0, 0, 0);
+  }
+
+  .Formulario img {
+    width: 18%;
+    position: absolute;
+    left: 150px;
+
+  }
+
+  .form {
+    width: 70%;
+    margin: 0px;
+    padding-bottom: 2%;
+  }
+  .col {
+    width: 100%;
+    height: 100px;
+  }
+
+  .formulario_grupo {
+    position: absolute;
+    background-color: white;
+    box-shadow:  0px 0px 10px 0.1px rgb(0, 0, 0);
+    width: 30%;
+    height: 100px;
+    border-radius: 15px;
+    align-items: center;
+    display: grid;
+    --color: #2e2d2d7e;
+  }
+
+  .formulario_grupo1 {
+    position: absolute;
+    background-color: white;
+    box-shadow:  0px 0px 10px 0.1px rgb(0, 0, 0);
+    width: 30%;
+    height: 100px;
+    border-radius: 15px;
+    align-items: center;
+    display: grid;
+    --color: #2e2d2d7e;
+  }
+
+  .formulario_grupo2 {
+    position: absolute;
+    background-color: white;
+    box-shadow:  0px 0px 10px 0.1px rgb(0, 0, 0);
+    width: 30%;
+    height: 100px;
+    border-radius: 15px;
+    align-items: center;
+    display: grid;
+    --color: #2e2d2d7e;
+  }
+
+  .formulario_grupo3 {
+    position: absolute;
+    background-color: white;
+    box-shadow:  0px 0px 10px 0.1px rgb(0, 0, 0);
+    width: 30%;
+    height: 100px;
+    border-radius: 15px;
+    align-items: center;
+    display: grid;
+    --color: #2e2d2d7e;
+  }
+
+  .formulario_grupo4 {
+    position: absolute;
+    background-color: white;
+    width: 30%;
+    height: 100px;
+    border-radius: 15px;
+    align-items: center;
+    display: grid;
+    --color: #dfd8d87e;
+  }
+
+  .Seleccion {
+    font-size: 20px;
+    width: 100%;
+    border-radius: 20px;
+    color: #5757577e;
+  }
+
+  .form_input {
+    width: 70%;
+    border-radius: 10px;
+    font-family: monospace;
+    font-size: 18px;
+    color: #000000;
+    border: none;
+    outline: rgb(0, 0, 0);
+    border-bottom: 1px solid var(--color);
+  }
+
+  .form_label {
+    color: var(--color);
+    font-size: 18px;
+    position: absolute;
+    top: 20px;
+    left: 8px;
+    transform: translateY(10px);
+    transition: transform 0.6s, color 0.3s;
+  }
+
+  .form_input:focus + .form_label,
+  .form_input:not(:placeholder-shown) + .form_label {
+    transform: translateY(-7px) scale(0.7);
+    transform-origin: top left;
+    color: #000000;
+  }
+
+  .drap-area {
+    width: 50%;
+    max-width: 65%;
+    border: 3px outset rgb(255, 255, 255);
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+    top: 25px;
+    right: 120px;
+    justify-content: center;
+    color: aliceblue;
+    float: right;
+    font-size: 20px;
+  }
+
+
+  .drap-area:active {
+    background-color: #b8d4fe;
+    color: #000000;
+    border: 2px dashed #feffff;
+  }
+
+  .drap-area h3 {
+    font-size: 30px;
+    color: white;
+  }
+
+  .file-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: solid 1px #000000;
+  }
+
+  .Archivo {
+    width: 20%;
+    float: left;
+    background-color: #5757577e;
+    color: white;
+    font-size: 25px;
+    position: relative;
+    top: 50px;
+    left: 40px;
+  }
+
+  .Archivo input{
+    background-color: #5757577e;
+    color: white;
+    width: 100%;
+    font-size: 18px;
+
+  }
+
+  .container.text-center {
+    width: 90%;
+    height: 120px;
+    position: relative;
+  }
+}
+
+
+@media (max-width:1250px){
+    
+    .Formulario img{
+        width: 20%;
+        position: relative;
+        top: 20px;
+
+    }
+
+    .Formulario h1{
+        width: 70%;
+        height: auto;
+        font-size: 3.5rem;
+        left: 250px;
+        text-shadow: 0 10px 10px rgb(0, 0, 0);
+    }
+
+}
+
+
+
+
+
+/*991*/
+@media (max-width:991px){
+
+    .Formulario{
+        width: 100%;
+    }
+
+    .Formulario h1{
+        width: 65%;
+        height: auto;
+        font-size: 3rem;
+        left: 250px;
+        text-shadow: 0 10px 10px rgb(0, 0, 0);
+    }
+     
+    .Formulario img{
+        width: 25%;
+        position: relative;
+        top: 0px;
+        left: 50px;
+    }
+
+    .shadow_pantalla{
+        width: 95%;
+        height: 650px;
+    }
+
+    .formulario_grupo{
+            width: 30%;
+            height: 100px;
+    }
+
+    .formulario_grupo1{
+        width: 30%;
+        height: 100px
+    }
+
+    .formulario_grupo2{
+        width: 30%;
+        height: 100px
+    }
+
+    .formulario_grupo3{
+        width: 30%;
+        height: 100px
+    }
+
+    .Archivo{
+        width: 20%;
+        height: 50px;
+    }
+
+    .drap-area{
+        top: 30px;
+    }
+
+}
+/*991*/
+
+
+/*750*/
+@media (max-width:750px){
+    .pantalla{
+        width: 100%;
+        height: 500px;
+    }
+
+    .Formulario{
+        width: 100%;
+
+    }
+
+    .Formulario img{
+        width: 30%;
+        height: auto;
+        top: 0px;
+        left: 260px;
+
+    }
+
+    .Formulario h1{
+        width: 80%;
+        height: auto;
+        left: 80px;
+        top: 180px;
+        font-size: 2.5rem;
+        text-shadow: 0 10px 10px rgb(0, 0, 0);
+    }
+
+    .shadow_pantalla{
+        width: 95%;
+        height: 650px;
+    }
+
+    .formulario_grupo{
+        width: 30%;
+    }
+    
+    .Seleccion{
+        width: 90%;
+    }
+
+    .Seleccion option{
+        width: 50%;
+    }
+
+    .formulario_grupo{
+        width: 35%;
+        left: -30px;
+    }
+
+    .formulario_grupo1{
+        width: 35%;
+        left: 400px;
+
+    }
+
+    .formulario_grupo2{
+        width: 35%;
+        left: 180px;
+    }
+
+    .formulario_grupo3{
+        width: 35%;
+        left: 400px;
+    }
+
+    .form_label{
+        font-size: 17px;
+        text-align: left;
+        top: 20px;
+    }
+
+    .form_input{
+        width: 90%;
+        font-size: 16px;
+    }
+
+    .form_input:focus + .form_label,
+    .form_input:not(:placeholder-shown) + .form_label{
+        transform: translateY(-5px) scale(.8);
+        transform-origin: top left;
+        color: #000000;
+        font-size: 17px;
+    }
+
+.Archivo{
+    width: 20%;
+    height: 50px;
+    left: 0px;
+    position: relative;
+}
+
+.drap-area{
+    width: 50%;
+    left: 0.5;
+}    
+
+.drap-area input{
+    width: 80%;
+    font-size: 15px;
+}
+ 
+}
+
+/*550*/
+
+@media (max-width: 550px){
+    .pantalla{
+        width: 100%;
+        height: 500px;
+    }
+
+    .Formulario{
+        width: 100%;
+    }
+
+    .Formulario img{
+        width: 45%;
+        top: -5px;
+        left: 140px;
+
+    }
+
+    .Formulario h1{
+        text-align: center;
+        left: 50px;
+        top: 195px;
+        font-size: 2rem;
+        text-shadow: 0 10px 10px rgb(0, 0, 0);
+    }
+
+    .shadow_pantalla{
+        width: 90%;
+        height: 650px;
+    }
+
+    .formulario_grupo{
+        width: 30%;
+        left: 0;
+    }
+
+    .formulario_grupo1{
+        width: 32%;
+        left: 305px;    
+    }
+
+    .formulario_grupo2{
+        width: 32%;
+        left: 148px;    
+    }
+
+    .formulario_grupo3{
+        width: 32%;
+        left: 305px;
+    }
+
+    .Seleccion{
+        width: 90%;
+
+    }
+
+    .Seleccion option{
+        width: 50%;
+    }
+
+    .form_label{
+        font-size: 14px;
+        text-align: left;
+        top: 25px;
+    }
+
+    .form_input{
+        width: 90%;
+        top: 0px;
+        position: relative;
+        font-size: 16px;
+    }
+
+    .form_input:focus + .form_label,
+    .form_input:not(:placeholder-shown) + .form_label{
+        transform: translateY(-8px) scale(.8);
+        transform-origin: top left;
+        color: #000000;
+        font-size: 15px;
+    }
+
+.Archivo{
+    width: 20%;
+    left: 10px;
+    position: relative;
+}
+
+.drap-area{
+    width: 60%;
+    left: -25px;
+}    
+
+.drap-area input{
+    width: 80%;
+    font-size: 15px;
+}
+ 
+
+}
+/* 550 */
+
+
+
+
+
+/* 450 */ 
+
+@media (max-width: 450px){
+    .pantalla{
+        width: 100%;
+        height: 900px;
+    }
+
+    .Formulario{
+        width: 90%;
+        height: 280px;  
+   
+    }
+
+    .Formulario img{
+        width: 200px;
+        height: auto;
+        position: relative;
+        left: 100px;
+        top: -100px;
+
+    }
+
+    .Formulario h1{
+        width: 300px;
+        font-size: 2rem;
+        position: relative;
+        top: 150px;
+        left: 60px;
+        margin-bottom: 5px;
+    }
+
+    .shadow_pantalla{
+        width: 90%;
+        height: 755px;
+        left: 20px;
+        overflow-y: auto;   
+    }
+
+    .formulario_grupo{
+        width: 140px;
+        left: 10px;    
+        top: -25px; 
+
+    }
+
+    .formulario_grupo1{
+        width: 140px;
+        margin: 0px;
+        top: 95px;
+        left: 180px;
+    }
+
+    .formulario_grupo2{
+        width: 140px;
+        left: 180px;
+        top: -25px;
+    }
+    
+    .formulario_grupo3{
+        width: 140px; 
+        top: 215px;
+        left: 10px;
+    }
+
+
+    .Seleccion{
+        width: 120px;
+        height: 25px;
+        display: grid;
+        justify-content: left;
+        font-size: 15px;
+        color: #0000007e;
+    }
+
+    .Seleccion option{
+        background-color: aliceblue;
+        color: black;
+    }
+
+    .Seleccion option:hover{
+        color: #000000;
+    }
+
+    .form_label{
+        width: 140px;
+        font-size: 14px;
+        top: 25px;
+        text-align: left;
+    }
+
+    .form_input{
+         width: 130px;
+         font-size: 13px;
+    }
+
+    .form_input:focus + .form_label,
+    .form_input:not(:placeholder-shown) + .form_label{
+        transform: translateY(-5px) scale(.8);
+        transform-origin: top left;
+        color: #000000;
+        font-size: 15px;
+    }
+
+    .Archivo{
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+    left: 75px;
+    top: 190px;
+
+    }
+
+    .drap-area{
+    width: 300px;
+    font-size: 16px;
+    height:70px;
+    top: 70px;
+    left: -75px; 
+    }    
+
+    .drap-area input{
+    width: 260px;
+    font-size: 15px;
+    }
+ 
+
+}
+/* 450 */
+
