@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cuerpo .= "<p> Vacante: $vacante\r\n </p>";
     $cuerpo .= "<p> Experiencia: $experiencia\r\n </p>";
     $cuerpo .= "<p> Teléfono: $telefono\r\n </p>";
-    $cuerpo .= "<p> Selección: $seleccion\r\n </p>";
+    $cuerpo .= "<p> Ubicación: $seleccion\r\n </p>";
 
     // Intentar enviar el correo electrónico con Resend
     try {
@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'tags' => [
                 [
                     'name' => 'category',
-                    'value' => 'confirm_email',
+                    'value' => 'form',
                 ],
             ],
         ]);
