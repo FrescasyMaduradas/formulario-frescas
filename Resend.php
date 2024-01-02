@@ -1,41 +1,59 @@
 <?php
 // Carga la biblioteca Resend y Configura limites del tamaño de carga de archivos
 require __DIR__ . '/vendor/autoload.php';
-ini_set('File_uploads', 'On')
-ini_set('upload_max_filesize', '20M');
-ini_set('post_max_size', '20M');
+
+//phpinfo(INFO_VARIABLES);  // Puedes utilizar constantes como INFO_VARIABLES, INFO_CONFIGURATION, etc.);
+
+// límite de carga de archivos en bytes (20 MB en bytes)
+ini_set('upload_max_filesize', '20971520'); 
+
+// límite de tamaño total de la solicitud en bytes (20 MB en bytes)
+ini_set('post_max_size', '20971520');
 
 try {
     //Iniciar la instancia de Resend
-    $resend = Resend::client('re_ZKbLvu5d_BU4FubgbBDvzgGUqMx89JzbR');
+    $resend = Resend::client('re_bTN3yHkt_JTCsKFZohVTSVfmWXTLkCY9K');
 
 } catch (Exception $e) {
-    // Manejar el error si no se puede crear la instancia de Resend 
+    // Manejar el error si no se puede crear la instancia de Resend
     echo "Error al inicializar Resend: " . $e->getMessage();
     exit();
 }
 
+$allowed_types = [
+    'application/pdf',
+    'application/msword'
+];
+
+$max_size = 50 * 1024 * 1024; // Acepta 50 megas
+
+if (!in_array($_FILES['file']['type'], $allowed_types)) {
+    die('El tipo de archivo no es válido.');
+  }
+
 // Verifica si el formulario se envía con el método post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Obtener y limpiar los datos del formulario
-    $nombre = htmlspecialchars($_POST["Name"]);
-    $email = filter_var($_POST["Email"], FILTER_SANITIZE_EMAIL);
-    $vacante = htmlspecialchars($_POST["Vacante"]);
-    $experiencia = htmlspecialchars($_POST["Experiencia"]);
-    $telefono = htmlspecialchars($_POST["Teléfono"]);
-    $seleccion = htmlspecialchars($_POST["Selección"]);
-
     // Agregar archivo adjunto y verifica si hay algún archivo adjunto
     if (isset($_FILES["file"]) && $_FILES["file"]["error"] == UPLOAD_ERR_OK) {
-        
+
         // Directorio donde se almacenarán los archivos subidos
         $directorio_destino = "archivos/";
-        
+
         // Obtener información sobre el archivo
         $nombre_archivo = basename($_FILES["file"]["name"]);
         $ruta_archivo = $directorio_destino . $nombre_archivo;
 
+        // Verificar el tamaño del archivo
+        $file_size = $_FILES['file']['size'];
+        if ($file_size > $max_size) {
+            die('El archivo es demasiado grande.');
+        }
+
+        // Mover el archivo al servidor
+        $new_file_name = uniqid() . '.' . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+        move_uploaded_file($_FILES['file']['tmp_name'], $upload_dir . "/" . $new_file_name);
+        
         // Mover el archivo al directorio de destino
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $ruta_archivo)) {
 
@@ -79,6 +97,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
+    // Obtener y limpiar los datos del formulario
+    $nombre = htmlspecialchars($_POST["Name"]);
+    $email = filter_var($_POST["Email"], FILTER_SANITIZE_EMAIL);
+    $vacante = htmlspecialchars($_POST["Vacante"]);
+    $experiencia = htmlspecialchars($_POST["Experiencia"]);
+    $telefono = htmlspecialchars($_POST["Teléfono"]);
+    $seleccion = htmlspecialchars($_POST["Selección"]);
+
     // Construir el cuerpo del correo
     $cuerpo = "<p> Nombre:  $nombre\r\n </p>";
     $cuerpo .= "<p> Correo: $email\r\n </p>";
@@ -98,12 +124,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'attachments' => [
                 [
                     'filename' => "$nombre_archivo",
-                    'content' =>  $ruta_archivo
+                    'content' =>  $new_file_name
                 ]
             ],
 
             'headers' => [
-                'X-Entity-Ref-ID' => 're_ZKbLvu5d_BU4FubgbBDvzgGUqMx89JzbR',
+                'X-Entity-Ref-ID' => 're_bTN3yHkt_JTCsKFZohVTSVfmWXTLkCY9K',
             ],
             'tags' => [
                 [
@@ -128,4 +154,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Código si no hay datos en $_POST
     echo "Error: No se recibieron datos del formulario.";
 }   
-?>  
+?>
