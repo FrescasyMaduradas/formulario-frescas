@@ -20,16 +20,16 @@ try {
     exit();
 }
 
+$max_size = 50 * 1024 * 1024; // Acepta 50 megas
+
 $allowed_types = [
     'application/pdf',
     'application/msword'
 ];
 
-$max_size = 50 * 1024 * 1024; // Acepta 50 megas
-
-if (!in_array($_FILES['file']['type'], $allowed_types)) {
-    die('El tipo de archivo no es válido.');
-  }
+if ($_FILES['archivo']['size'] > $max_size || !in_array(pathinfo($_FILES['archivo']['name'], PATHINFO_EXTENSION), $allowed_types)) {
+    echo 'Archivo no permitido o excede el tamaño máximo permitido.';
+}
 
 // Verifica si el formulario se envía con el método post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
