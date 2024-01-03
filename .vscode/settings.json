@@ -9,5 +9,6 @@
         "Rotz",
         "whsec"
     ],
-    "php.validate.executablePath": "Resend.php"
+    "php.validate.executablePath": "Resend.php",
+    "cSpell.language": "la,es-ES,es,lorem,en-US,en-GB"
 }

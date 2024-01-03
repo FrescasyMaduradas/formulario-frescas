@@ -4,11 +4,11 @@ require __DIR__ . '/vendor/autoload.php';
 
 //phpinfo(INFO_VARIABLES);  // Puedes utilizar constantes como INFO_VARIABLES, INFO_CONFIGURATION, etc.);
 
-// límite de carga de archivos en bytes (20 MB en bytes)
-ini_set('upload_max_filesize', '20971520'); 
+// límite de carga de archivos en bytes (40 MB en bytes)
+ini_set('upload_max_filesize', '40971520'); 
 
-// límite de tamaño total de la solicitud en bytes (20 MB en bytes)
-ini_set('post_max_size', '20971520');
+// límite de tamaño total de la solicitud en bytes (40 MB en bytes)
+ini_set('post_max_size', '40971520');
 
 try {
     //Iniciar la instancia de Resend
@@ -25,12 +25,24 @@ $max_size = 50 * 1024 * 1024; // Acepta 50 megas
 // Verifica el tipo de archivo
 $allowed_types = [
     'application/pdf',
-    'application/msword'
+    'application/docx'
 ];
 
+$min_size_kb = 100; // Establece el límite mínimo en 100 kilobytes
+$min_size_bytes = $min_size_kb * 1024; // Convierte el límite mínimo a bytes
+
+$archivo = $_FILES['file'];
+
+if ($archivo['size'] < $min_size_bytes) {
+    echo "El archivo es demasiado pequeño. Debe ser al menos $min_size_kb kilobytes.";
+    exit();
+    // Aquí puedes tomar medidas adicionales, como detener el procesamiento del formulario.
+}
+
 // Verifica que los archivos sean los requeridos y permite el máximo de megas de los archivos
-if ($_FILES['archivo']['size'] > $max_size || !in_array(pathinfo($_FILES['archivo']['name'], PATHINFO_EXTENSION), $allowed_types)) {
+if ($_FILES['file']['size'] > $max_size || !in_array(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION), $allowed_types)) {
     echo 'Archivo no permitido o excede el tamaño máximo permitido.';
+    exit();
 }
 
 // Verifica si el formulario se envía con el método post
@@ -54,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Mover el archivo al servidor
         $new_file_name = uniqid() . '.' . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-        move_uploaded_file($_FILES['file']['tmp_name'], $upload_dir . "/" . $new_file_name);
+        move_uploaded_file($_FILES['file']['name'], __DIR__ . "/" . $new_file_name);
         
         // Mover el archivo al directorio de destino
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $ruta_archivo)) {
@@ -126,6 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'attachments' => [
                 [
                     'filename' => "$nombre_archivo",
+                    $max_size, $min_size_bytes,
                     'content' =>  $new_file_name
                 ]
             ],
