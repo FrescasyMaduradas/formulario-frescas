@@ -5,7 +5,7 @@ require __DIR__ . '/vendor/autoload.php';
 //phpinfo(INFO_VARIABLES);  // Puedes utilizar constantes como INFO_VARIABLES, INFO_CONFIGURATION, etc.);
 
 // límite de carga de archivos en bytes (40 MB en bytes)
-ini_set('upload_max_filesize', '40971520'); 
+ini_set('upload_max_filesize', '40971520');
 
 // límite de tamaño total de la solicitud en bytes (40 MB en bytes)
 ini_set('post_max_size', '40971520');
@@ -20,12 +20,12 @@ try {
     exit();
 }
 
-$max_size = 50 * 1024 * 1024; // Acepta 50 megas
+$max_size = 10048576; // Acepta 10 megas
 
 // Verifica el tipo de archivo
 $allowed_types = [
     'application/pdf',
-    'application/docx'
+    'application/msword'
 ];
 
 $min_size_kb = 100; // Establece el límite mínimo en 100 kilobytes
@@ -33,15 +33,25 @@ $min_size_bytes = $min_size_kb * 1024; // Convierte el límite mínimo a bytes
 
 $archivo = $_FILES['file'];
 
-if ($archivo['size'] < $min_size_bytes) {
+if ($archivo['size'] <= $min_size_bytes) {
     echo "El archivo es demasiado pequeño. Debe ser al menos $min_size_kb kilobytes.";
     exit();
     // Aquí puedes tomar medidas adicionales, como detener el procesamiento del formulario.
 }
 
 // Verifica que los archivos sean los requeridos y permite el máximo de megas de los archivos
-if ($_FILES['file']['size'] > $max_size || !in_array(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION), $allowed_types)) {
-    echo 'Archivo no permitido o excede el tamaño máximo permitido.';
+if ($_FILES['file']['size'] >= $max_size) {
+    echo 'Excede el tamaño máximo permitido.';
+    exit();
+}
+
+if (!in_array($_FILES['file']['type'], $allowed_types)) {
+    echo 'Archivo no permitido.';
+    exit();
+}
+
+if ($_FILES['file']['error'] > 0) {
+    echo 'Error durante la carga del archivo: ' . $_FILES['file']['error'];
     exit();
 }
 
@@ -65,15 +75,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Mover el archivo al servidor
-        $new_file_name = uniqid() . '.' . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-        move_uploaded_file($_FILES['file']['name'], __DIR__ . "/" . $new_file_name);
-        
+        $new_file_name = uniqid() . '.' . pathinfo($_FILES['file']['type'], PATHINFO_EXTENSION);
+        move_uploaded_file($_FILES['file']['type'], __DIR__ . "/" . $new_file_name);
+
         // Mover el archivo al directorio de destino
         if (move_uploaded_file($_FILES["file"]["tmp_name"], $ruta_archivo)) {
 
         //Verifica si el archivo existe
         if (!file_exists($ruta_archivo)) {
-            echo "El archivo no existe: $ruta_archivo ";
+            echo "El archivo no existe: $ruta_archivo";
             exit();
         }
             switch ($_FILES["file"]["error"]) {
@@ -138,7 +148,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'attachments' => [
                 [
                     'filename' => "$nombre_archivo",
-                    $max_size, $min_size_bytes,
                     'content' =>  $new_file_name
                 ]
             ],
@@ -159,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
 
     } catch (Exception $e) {
-        
+
         // Manejar el error si falla el envío del correo electrónico con Resend
         echo "Error al enviar el correo electrónico con Resend: " . $e->getMessage();
         exit();
@@ -168,5 +177,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Código si no hay datos en $_POST
     echo "Error: No se recibieron datos del formulario.";
-}   
+}
 ?>
