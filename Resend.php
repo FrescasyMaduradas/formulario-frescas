@@ -22,11 +22,13 @@ try {
 
 $max_size = 50 * 1024 * 1024; // Acepta 50 megas
 
+// Verifica el tipo de archivo
 $allowed_types = [
     'application/pdf',
     'application/msword'
 ];
 
+// Verifica que los archivos sean los requeridos y permite el máximo de megas de los archivos
 if ($_FILES['archivo']['size'] > $max_size || !in_array(pathinfo($_FILES['archivo']['name'], PATHINFO_EXTENSION), $allowed_types)) {
     echo 'Archivo no permitido o excede el tamaño máximo permitido.';
 }
