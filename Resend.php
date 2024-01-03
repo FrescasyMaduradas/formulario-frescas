@@ -148,6 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'attachments' => [
                 [
                     'filename' => "$nombre_archivo",
+                    'path' => 'http://localhost:8000/api/send',
                     'content' =>  $new_file_name
                 ]
             ],
