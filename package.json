@@ -16,7 +16,7 @@
     "start": "^5.1.0"
   },
   "scripts": {},
-  "author": "",
+  "author": "Haider Cardenal",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.10.6",

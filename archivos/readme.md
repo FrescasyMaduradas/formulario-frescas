@@ -1,0 +1,1 @@
+Almacena los archivos enviados desde el formulario.
