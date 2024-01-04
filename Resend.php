@@ -2,7 +2,7 @@
 // Carga la biblioteca Resend y Configura limites del tamaño de carga de archivos
 require __DIR__ . '/vendor/autoload.php';
 
-phpinfo(INFO_VARIABLES);  // Puedes utilizar constantes como INFO_VARIABLES, INFO_CONFIGURATION, etc.);
+//phpinfo(INFO_VARIABLES);   Puedes utilizar constantes como INFO_VARIABLES, INFO_CONFIGURATION, etc.);
 
 // límite de carga de archivos en bytes (40 MB en bytes)
 ini_set('upload_max_filesize', '40971520');
@@ -148,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'attachments' => [
                 [
                     'filename' => "$nombre_archivo",
-                    'path' => "https://api.resend.com $new_file_name",
+                    'path' => "http:$nombre_archivo",
                     'content' =>  $new_file_name
                 ]
             ],
